@@ -1,8 +1,10 @@
 services:
   ad-password-reset:
     build: .
-    ports:
-      - "${PORT:-5000}:${PORT:-5000}"
+    # host networking lets the container resolve internal .local / AD hostnames
+    # the same way the host machine does. ports: is not needed in this mode —
+    # the app is accessible directly on the host's IP at $PORT.
+    network_mode: host
     env_file:
       - .env
     restart: unless-stopped

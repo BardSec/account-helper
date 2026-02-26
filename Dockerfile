@@ -21,4 +21,4 @@ EXPOSE ${PORT:-5000}
 
 # Gunicorn: 2 worker processes, bind to the port set by $PORT (default 5000).
 # Adjust --workers based on the host's CPU count (2-4 * num_cores is typical).
-CMD gunicorn --workers 2 --bind "0.0.0.0:${PORT:-5000}" app:app
+CMD gunicorn --workers 2 --worker-tmp-dir /dev/shm --bind "0.0.0.0:${PORT:-5000}" app:app
