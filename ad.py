@@ -31,7 +31,7 @@ class ADClient:
             tls_config = Tls(
                 validate=ssl.CERT_NONE if self.skip_tls_verify else ssl.CERT_REQUIRED
             )
-        return Server(self.server_url, use_ssl=use_ssl, tls=tls_config, get_info=ALL)
+        return Server(self.server_url, use_ssl=use_ssl, tls=tls_config, get_info=ALL, connect_timeout=5)
 
     def _connect(self, username: str, password: str) -> Connection:
         """
